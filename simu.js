@@ -1,6 +1,7 @@
 var log=new Array(11);
 var times=0;
-var alter=0;
+var quartz=1400;
+var money=0;
 //0:4serv,1:3serv,2:4craft,3:3craft
 var serv5=new Array("002","008","037","052","059","060","062","065","075","076","084","085","097");
 var craft5=new Array("031","032","033","034","035","040","048","057","058","067","075","097","175");    //加入宇宙棱镜
@@ -9,29 +10,51 @@ var serv3=new Array("007","009","013","015","017","020","022","023","026","027",
 var craft4=new Array("021","022","023","024","025","026","027","028","029","030","038","039","047","056","066","073","074","098","176");
 var upcraft4=new Array("182","183","184");
 var craft3=new Array("037","042","046","055","065","072","089","090","091","092","093","094","095","096","177");
-
+function buyQuartz(){
+    var buy=confirm("您的圣晶石不足，是否花费518元购买140颗圣晶石？");
+    if(buy){
+        quartz+=140;
+        money+=518;
+        alert("购买圣晶石成功。您目前持有圣晶石："+quartz);
+        $("#quartz").text(quartz);
+        $("#money").text(money);
+        return true;
+    }
+    else{
+        alert("取消购买圣晶石。");
+        return false;
+    }
+}
 function getOne(i,j){
     var imgurl;
     var rand;
-    if(j==0){
+    if(j==-1){
+        if(quartz<3){
+            if(!buyQuartz())
+                return;
+        }
+        quartz-=3;
+        $("#quartz").text(quartz);
+    }
+    if(j==0||j==-1){
+        
         times=times+1;
         $("#times").text(times);
         rand=Math.random();
     }
-        
     else
         rand=j;
-    if(rand<0.01){ //5,servant
+    if(rand<1.01){ //5,servant
         log[i]=0;
-        if(rand<0.0065){    //up
-            imgurl="http://file.fgowiki.591mogu.com/fgo/head/106.jpg";
+        if(rand<0.65){    //up
+            imgurl="http://file.fgowiki.591mogu.com/fgo/head/037.jpg";
             $("#r_"+i).attr("src",imgurl);
             $("#serv5").append("<img class=\"img-thumbnail\" src=\""+imgurl+"\"></img> ");
             return;
         }
-        var bias=(0.01-0.0065)/serv5.length;
+        var bias=(1-0.65)/serv5.length;
         for(var r=0;r<serv5.length;r=r+1){  //not up
-            if(rand>=0.0065+r*bias&&rand<0.0065+(r+1)*bias){
+            if(rand>=0.65+r*bias&&rand<0.65+(r+1)*bias){
                 imgurl="http://file.fgowiki.591mogu.com/fgo/head/"+serv5[r]+".jpg";
                 $("#r_"+i).attr("src",imgurl);
                 $("#serv5").append("<img class=\"img-thumbnail\" src=\""+imgurl+"\"></img> ");
@@ -108,6 +131,12 @@ function getOne(i,j){
     }
 }
 function getTen(){
+    if(quartz<30){
+        if(!buyQuartz())
+            return;
+    }
+    quartz-=30;
+    $("#quartz").text(quartz);
     log=new Array(11);
     for(var i=1;i<=10;i++)
         getOne(i,0);
