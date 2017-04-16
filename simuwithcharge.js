@@ -44,17 +44,23 @@ function getOne(i,j){
     }
     else
         rand=j;
-    if(rand<0.01){ //5,servant
+    if(rand<1.01){ //5,servant
         log[i]=0;
-        if(rand<0.0065){    //up
+        if(rand<0.325){    //up
             imgurl="http://file.fgowiki.591mogu.com/fgo/head/108.jpg";
             $("#r_"+i).attr("src",imgurl);
             $("#serv5").append("<img class=\"img-thumbnail\" src=\""+imgurl+"\"></img> ");
             return;
         }
-        var bias=(0.01-0.0065)/serv5.length;
+        if(rand<0.65){    //up
+            imgurl="http://file.fgowiki.591mogu.com/fgo/head/037.jpg";
+            $("#r_"+i).attr("src",imgurl);
+            $("#serv5").append("<img class=\"img-thumbnail\" src=\""+imgurl+"\"></img> ");
+            return;
+        }
+        var bias=(1-0.65)/serv5.length;
         for(var r=0;r<serv5.length;r=r+1){  //not up
-            if(rand>=0.0065+r*bias&&rand<0.0065+(r+1)*bias){
+            if(rand>=0.65+r*bias&&rand<0.65+(r+1)*bias){
                 imgurl="http://file.fgowiki.591mogu.com/fgo/head/"+serv5[r]+".jpg";
                 $("#r_"+i).attr("src",imgurl);
                 $("#serv5").append("<img class=\"img-thumbnail\" src=\""+imgurl+"\"></img> ");
