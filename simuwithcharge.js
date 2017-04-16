@@ -1,6 +1,6 @@
 var log=new Array(11);
 var times=0;
-var quartz=140;
+var quartz=1400;
 var money=0;
 //0:4serv,1:3serv,2:4craft,3:3craft
 var serv5=new Array("002","008","037","052","059","060","062","065","075","076","084","085","097");
@@ -46,12 +46,6 @@ function getOne(i,j){
         rand=j;
     if(rand<1.01){ //5,servant
         log[i]=0;
-        if(rand<0.325){    //up
-            imgurl="http://file.fgowiki.591mogu.com/fgo/head/108.jpg";
-            $("#r_"+i).attr("src",imgurl);
-            $("#serv5").append("<img class=\"img-thumbnail\" src=\""+imgurl+"\"></img> ");
-            return;
-        }
         if(rand<0.65){    //up
             imgurl="http://file.fgowiki.591mogu.com/fgo/head/037.jpg";
             $("#r_"+i).attr("src",imgurl);
