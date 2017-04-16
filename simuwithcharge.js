@@ -46,8 +46,14 @@ function getOne(i,j){
         rand=j;
     if(rand<1.01){ //5,servant
         log[i]=0;
-        if(rand<0.65){    //up
+        if(rand<0.325){    //up
             imgurl="http://file.fgowiki.591mogu.com/fgo/head/037.jpg";
+            $("#r_"+i).attr("src",imgurl);
+            $("#serv5").append("<img class=\"img-thumbnail\" src=\""+imgurl+"\"></img> ");
+            return;
+        }
+        if(rand<0.65){    //up
+            imgurl="http://file.fgowiki.591mogu.com/fgo/head/108.jpg";
             $("#r_"+i).attr("src",imgurl);
             $("#serv5").append("<img class=\"img-thumbnail\" src=\""+imgurl+"\"></img> ");
             return;
