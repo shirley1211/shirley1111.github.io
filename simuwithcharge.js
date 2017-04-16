@@ -47,7 +47,7 @@ function getOne(i,j){
     if(rand<0.01){ //5,servant
         log[i]=0;
         if(rand<0.0065){    //up
-            imgurl="http://file.fgowiki.591mogu.com/fgo/head/106.jpg";
+            imgurl="http://file.fgowiki.591mogu.com/fgo/head/108.jpg";
             $("#r_"+i).attr("src",imgurl);
             $("#serv5").append("<img class=\"img-thumbnail\" src=\""+imgurl+"\"></img> ");
             return;
